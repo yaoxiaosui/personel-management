@@ -1,5 +1,10 @@
 <!DOCTYPE HTML>
 <html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <head>
 	<meta charset="utf-8" />
 	<title> Personel Management</title>
@@ -7,20 +12,60 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-    	<h2 class="text-center mt-4 mb-4">Personel Info</h2>
-    	<div class="card">
-    		<div class="card-header"><b>Select Excel File</b></div>
-    		<div class="card-body">
 
-                <input type="file" id="excel_file" />
+<div class="bgimg w3-display-container w3-animate-opacity">
 
-    		</div>
-    	</div>
-        <div id="excel_data" class="mt-5"></div>
+
+    <div class="topnav w3-text-white">
+		<input type="file" name="file" id="excel_file" class="inputfile" />
+        	<a> <label for="excel_file">Upload</label></a>
+
+        <a href="javascript:void(0)" name = "logout" class="fa fa-user-circle-o w3-margin-right" onclick=Logout()>Log Out</a>
+        <a href="javascript:void(0)" onclick=toProfile()>Welcome  <span id = username></span></a>
+        <script>
+            var username = JSON.parse(localStorage.getItem('login_info')).username;
+            //alert(username)
+            //document.write("Welcome " + username)
+            document.getElementById('username').innerHTML = username
+
+        </script>
+
+        <div class="w3-black w3-xlarge" style="max-width:1500px;max-height: 16px;margin:auto">
+        <div class="w3-button w3-padding-12 w3-left" onclick="open_menu()">☰</div>
+
+          <!-- Sidebar (hidden by default) -->
+        <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-large w3-animate-left" style="display:none;z-index:2;width:30%;min-width:300px" id="mySidebar">
+          <a href="javascript:void(0)" onclick="close_menu()"
+          class="w3-bar-item w3-button">Close Menu</a>
+          <a href="#personel" onclick="toPersonel()" class="w3-bar-item w3-button">Personel Management</a>
+          <a href="#material" onclick="w3_close()" class="w3-bar-item w3-button">Material Management</a>
+            <a href="#shift" onclick="w3_close()" class="w3-bar-item w3-button">Shift Management</a>
+            <a href="#data" onclick="w3_close()" class="w3-bar-item w3-button">Data Analytics</a>
+            <a href="#finance" onclick="w3_close()" class="w3-bar-item w3-button">Finance Management</a>
+            <a href="#setting" onclick="w3_close()" class="w3-bar-item w3-button">Settings</a>
+        </nav>
+
     </div>
+    <div style="padding-left:16px"></div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+
+        	<div id="excel_data" class="mt-5"></div>
+</div>
+
+
+
+
 </body>
 </html>
 
@@ -42,7 +87,7 @@ excel_file.addEventListener('change', (event) => {
     var reader = new FileReader();
 
     reader.readAsArrayBuffer(event.target.files[0]);
-    alert(event.target.files[0])
+    //alert(event.target.files[0])
     reader.onload = function(event){
 
         var data = new Uint8Array(reader.result);
@@ -95,5 +140,29 @@ excel_file.addEventListener('change', (event) => {
 
 });
 
+    function Logout() {
+      location.replace("http://localhost:63342/Personel%20Management/homepage.html?_ijt=9eronc6tu9b5e270vmd32obgtu")
+    }
+
+    function open_menu() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function close_menu() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    function toPersonel() {
+      location.replace("http://localhost:63342/Personel%20Management/Personel%20Managment.html?_ijt=l8u6c13npnqkre1bujanuncks5")
+
+    }
+    function  toProfile() {
+    	location.replace("http://localhost:63342/Personel%20Management/Profile.html?_ijt=m70c1ofg36idib5vdkfrfohkjd")
+
+}
+
+
 </script>
 
+
+</script>
